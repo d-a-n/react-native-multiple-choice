@@ -1,0 +1,27 @@
+{
+  "name": "react-native-multiple-choice",
+  "version": "0.0.1",
+  "description": "A cross-platform (iOS / Android) single and multiple-choice React Native component.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-a-n/react-native-multiple-choice.git"
+  },
+  "keywords": [
+    "multiple-choice",
+    "single-choice",
+    "ios",
+    "android",
+    "react-native",
+    "react-component"
+  ],
+  "author": "Daniel Korger <dan@imake.io> (https://imake.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d-a-n/react-native-multiple-choice/issues"
+  },
+  "homepage": "https://github.com/d-a-n/react-native-multiple-choice#readme"
+}
