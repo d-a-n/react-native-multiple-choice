@@ -40,6 +40,6 @@ Here is an extensive overview of the component usage.
 
 ## Screenshot
 
-![example](./SampleApp/assets/images/screenshot.png)
+![example](https://raw.githubusercontent.com/d-a-n/react-native-multiple-choice/master/assets/images/screenshot.png)
 
 
