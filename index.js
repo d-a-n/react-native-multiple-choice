@@ -113,7 +113,7 @@ class MultipleChoice extends BaseComponent {
         }
 
         return (
-            <View>
+            <View style={this.props.optionStyle}>
                 <TouchableOpacity onPress={()=>{this._selectOption(option)}}>
                     <View>
                         <View
@@ -132,7 +132,7 @@ class MultipleChoice extends BaseComponent {
     render() {
         return (
             <ListView
-                style={Styles.list}
+                style={[Styles.list, this.props.style]}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}
             />
@@ -150,11 +150,15 @@ MultipleChoice.propTypes = {
     renderSeparator: React.PropTypes.func,
     renderRow: React.PropTypes.func,
     renderText: React.PropTypes.func,
+    style: View.propTypes.style,
+    optionStyle: View.propTypes.style,
 };
 MultipleChoice.defaultProps = {
     options: [],
     selectedOptions: [],
-    onSelection(option){}
+    onSelection(option){},
+    style:{},
+    optionStyle:{}
 };
 
 module.exports = MultipleChoice;
