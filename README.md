@@ -9,10 +9,9 @@ npm i react-native-multiple-choice --save
 
 ## Usage
 
-Here is an extensive overview of the component usage.
+Here is an overview of the component usage.
 
 ```jsx
-
 <MultipleChoice
     options={[
     'Lorem ipsum dolor sit',
@@ -37,6 +36,7 @@ Here is an extensive overview of the component usage.
 * `renderSeparator - function(option)` should return a separator node that is displayed between the options, default: gray line
 * `renderText - function(option)` should return a text node, default: text node
 * `renderRow - function(option)` should return a option view
+* `disabled - bool` if set to true component is disabled and can't be interacted with
 
 ## Screenshot
 

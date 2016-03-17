@@ -6,11 +6,29 @@ var {
     TouchableOpacity,
     View,
     Image,
-    ListView
+    ListView,
+    PropTypes
 } = React;
 
 import BaseComponent from './BaseComponent'
 import Styles from './styles'
+const propTypes = {
+    options: PropTypes.array.isRequired,
+    selectedOptions: PropTypes.array,
+    maxSelectedOptions: PropTypes.number,
+    onSelection: PropTypes.func,
+    renderIndicator: PropTypes.func,
+    renderSeparator: PropTypes.func,
+    renderRow: PropTypes.func,
+    renderText: PropTypes.func,
+    disabled: PropTypes.bool,
+};
+const defaultProps = {
+    options: [],
+    selectedOptions: [],
+    onSelection(option){},
+    disabled: false,
+};
 
 class MultipleChoice extends BaseComponent {
 
@@ -23,6 +41,7 @@ class MultipleChoice extends BaseComponent {
         this.state = {
             dataSource: ds.cloneWithRows(this.props.options),
             selectedOptions: this.props.selectedOptions || [],
+            disabled: this.props.disabled
         };
 
         this._bind(
@@ -112,9 +131,13 @@ class MultipleChoice extends BaseComponent {
             return this.props.renderRow(option);
         }
 
+        const disabled = this.state.disabled;
         return (
             <View>
-                <TouchableOpacity onPress={()=>{this._selectOption(option)}}>
+                <TouchableOpacity
+                    activeOpacity={disabled ? 1 : 0.7}
+                    onPress={!disabled ? ()=>{this._selectOption(option)} : null}
+                >
                     <View>
                         <View
                             style={Styles.row}
@@ -141,20 +164,7 @@ class MultipleChoice extends BaseComponent {
 };
 
 
-MultipleChoice.propTypes = {
-    options: React.PropTypes.array.isRequired,
-    selectedOptions: React.PropTypes.array,
-    maxSelectedOptions: React.PropTypes.number,
-    onSelection: React.PropTypes.func,
-    renderIndicator: React.PropTypes.func,
-    renderSeparator: React.PropTypes.func,
-    renderRow: React.PropTypes.func,
-    renderText: React.PropTypes.func,
-};
-MultipleChoice.defaultProps = {
-    options: [],
-    selectedOptions: [],
-    onSelection(option){}
-};
+MultipleChoice.propTypes = propTypes;
+MultipleChoice.defaultProps = defaultProps;
 
 module.exports = MultipleChoice;
