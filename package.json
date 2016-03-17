@@ -1,6 +1,6 @@
 {
   "name": "react-native-multiple-choice",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A cross-platform (iOS / Android) single and multiple-choice React Native component.",
   "main": "index.js",
   "scripts": {
