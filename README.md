@@ -28,6 +28,8 @@ Here is an overview of the component usage.
 
 ## Props
 
+* `style - {}` custom style of the list
+* `optionStyle - {}` custom style of the option element
 * `options - []` required array of options
 * `selectedOptions - []` optional array of initially selected options
 * `maxSelectedOptions - int` optional maximum number of selectable options

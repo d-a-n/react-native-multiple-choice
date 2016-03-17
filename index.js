@@ -8,26 +8,31 @@ var {
     Image,
     ListView,
     PropTypes
-} = React;
+    } = React;
 
 import BaseComponent from './BaseComponent'
 import Styles from './styles'
+
 const propTypes = {
-    options: PropTypes.array.isRequired,
-    selectedOptions: PropTypes.array,
-    maxSelectedOptions: PropTypes.number,
-    onSelection: PropTypes.func,
-    renderIndicator: PropTypes.func,
-    renderSeparator: PropTypes.func,
-    renderRow: PropTypes.func,
-    renderText: PropTypes.func,
-    disabled: PropTypes.bool,
+    options: React.PropTypes.array.isRequired,
+    selectedOptions: React.PropTypes.array,
+    maxSelectedOptions: React.PropTypes.number,
+    onSelection: React.PropTypes.func,
+    renderIndicator: React.PropTypes.func,
+    renderSeparator: React.PropTypes.func,
+    renderRow: React.PropTypes.func,
+    renderText: React.PropTypes.func,
+    style: View.propTypes.style,
+    optionStyle: View.propTypes.style,
+    disabled: PropTypes.bool
 };
 const defaultProps = {
     options: [],
     selectedOptions: [],
     onSelection(option){},
-    disabled: false,
+    style:{},
+    optionStyle:{},
+    disabled: false
 };
 
 class MultipleChoice extends BaseComponent {
@@ -133,7 +138,8 @@ class MultipleChoice extends BaseComponent {
 
         const disabled = this.state.disabled;
         return (
-            <View>
+
+            <View style={this.props.optionStyle}>
                 <TouchableOpacity
                     activeOpacity={disabled ? 1 : 0.7}
                     onPress={!disabled ? ()=>{this._selectOption(option)} : null}
@@ -155,14 +161,13 @@ class MultipleChoice extends BaseComponent {
     render() {
         return (
             <ListView
-                style={Styles.list}
+                style={[Styles.list, this.props.style]}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}
             />
         );
     }
 };
-
 
 MultipleChoice.propTypes = propTypes;
 MultipleChoice.defaultProps = defaultProps;
