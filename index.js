@@ -57,6 +57,12 @@ class MultipleChoice extends BaseComponent {
         );
     }
 
+    componentWillReceiveProps(nextProps) {
+        this._updateSelectedOptions(nextProps.selectedOptions);
+        this.setState({
+            disabled: nextProps.disabled
+        });
+    }
     _updateSelectedOptions(selectedOptions) {
         this.setState({
             selectedOptions,
