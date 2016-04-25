@@ -104,10 +104,11 @@ class MultipleChoice extends BaseComponent {
     }
 
     _renderIndicator(option) {
+        if(typeof this.props.renderIndicator === 'function') {
+            return this.props.renderIndicator(option);
+        }
+
         if (this._isSelected(option)) {
-            if(typeof this.props.renderIndicator === 'function') {
-                return this.props.renderIndicator(option);
-            }
 
             return (
                 <Image
