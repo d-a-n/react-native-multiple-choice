@@ -1,6 +1,8 @@
 # react-native-multiple-choice
 A cross-platform (iOS / Android) single and multiple-choice React Native component.
 
+fix bug by home3k.
+
 ## Install
 
 ```sh
