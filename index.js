@@ -29,9 +29,9 @@ const defaultProps = {
     options: [],
     selectedOptions: [],
     onSelection(option){},
-    style:{},
-    optionStyle:{},
-    disabled: false
+style:{},
+optionStyle:{},
+disabled: false
 };
 
 class MultipleChoice extends BaseComponent {
@@ -39,7 +39,7 @@ class MultipleChoice extends BaseComponent {
     constructor(props) {
         super(props);
 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.ds = ds;
 
         this.state = {
@@ -49,23 +49,23 @@ class MultipleChoice extends BaseComponent {
         };
 
         this._bind(
-            '_renderRow',
-            '_selectOption',
-            '_isSelected',
-            '_updateSelectedOptions'
+          '_renderRow',
+          '_selectOption',
+          '_isSelected',
+          '_updateSelectedOptions'
         );
     }
 
     componentWillReceiveProps(nextProps) {
-        this._updateSelectedOptions(nextProps.selectedOptions);
+        this._updateSelectedOptions(nextProps.selectedOptions, nextProps.options);
         this.setState({
             disabled: nextProps.disabled
         });
     }
-    _updateSelectedOptions(selectedOptions) {
+    _updateSelectedOptions(selectedOptions, options) {
         this.setState({
             selectedOptions,
-            dataSource: this.ds.cloneWithRows(this.props.options)
+            dataSource: options ? this.ds.cloneWithRows(options) : this.ds.cloneWithRows(this.props.options)
         });
     }
 
@@ -109,11 +109,11 @@ class MultipleChoice extends BaseComponent {
             }
 
             return (
-                <Image
-                    style={Styles.optionIndicatorIcon}
-                    source={require('./assets/images/check.png')}
-                />
-            );
+              <Image
+            style={Styles.optionIndicatorIcon}
+            source={require('./assets/images/check.png')}
+              />
+        );
         }
     }
 
@@ -136,6 +136,7 @@ class MultipleChoice extends BaseComponent {
     }
 
     _renderRow(option) {
+        console.log('render row', option)
 
         if(typeof this.props.renderRow === 'function') {
             return this.props.renderRow(option);
@@ -144,33 +145,34 @@ class MultipleChoice extends BaseComponent {
         const disabled = this.state.disabled;
         return (
 
-            <View style={this.props.optionStyle}>
-                <TouchableOpacity
-                    activeOpacity={disabled ? 1 : 0.7}
-                    onPress={!disabled ? ()=>{this._selectOption(option)} : null}
-                >
-                    <View>
-                        <View
-                            style={Styles.row}
-                        >
-                            <View style={Styles.optionLabel}>{this._renderText(option)}</View>
-                            <View style={Styles.optionIndicator}>{this._renderIndicator(option)}</View>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                {this._renderSeparator(option)}
-            </View>
-        );
+          <View style={this.props.optionStyle}>
+    <TouchableOpacity
+        activeOpacity={disabled ? 1 : 0.7}
+        onPress={!disabled ? ()=>{this._selectOption(option)} : null}
+    >
+    <View>
+        <View
+        style={Styles.row}
+    >
+    <View style={Styles.optionLabel}>{this._renderText(option)}</View>
+        <View style={Styles.optionIndicator}>{this._renderIndicator(option)}</View>
+        </View>
+        </View>
+        </TouchableOpacity>
+        {this._renderSeparator(option)}
+    </View>
+    );
     }
 
     render() {
         return (
-            <ListView
-                style={[Styles.list, this.props.style]}
-                dataSource={this.state.dataSource}
-                renderRow={this._renderRow}
-            />
-        );
+          <ListView
+        enableEmptySections={true}
+        style={[Styles.list, this.props.style]}
+        dataSource={this.state.dataSource}
+        renderRow={this._renderRow}
+    />
+    );
     }
 };
 
