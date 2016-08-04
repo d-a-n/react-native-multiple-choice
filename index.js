@@ -57,7 +57,6 @@ class MultipleChoice extends BaseComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.info('rec', nextProps)
         this._updateSelectedOptions(nextProps.selectedOptions, nextProps.options);
         this.setState({
             disabled: nextProps.disabled
@@ -166,7 +165,6 @@ class MultipleChoice extends BaseComponent {
     }
 
     render() {
-        console.log(this.state.dataSource)
         return (
           <ListView
         enableEmptySections={true}
