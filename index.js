@@ -15,6 +15,9 @@ import Styles from './styles'
 const propTypes = {
     options: React.PropTypes.array.isRequired,
     selectedOptions: React.PropTypes.array,
+    updateSelectedOptions: PropTypes.bool,
+    optionIndex: PropTypes.func,
+    isSelected: PropTypes.func,
     maxSelectedOptions: React.PropTypes.number,
     onSelection: React.PropTypes.func,
     renderIndicator: React.PropTypes.func,
@@ -28,6 +31,7 @@ const propTypes = {
 const defaultProps = {
     options: [],
     selectedOptions: [],
+    updateSelectedOptions: true,
     onSelection(option){},
     style:{},
     optionStyle:{},
@@ -57,7 +61,9 @@ class MultipleChoice extends BaseComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        this._updateSelectedOptions(nextProps.selectedOptions);
+        if (this.props.updateSelectedOptions) {
+          this._updateSelectedOptions(nextProps.selectedOptions);
+        }
         this.setState({
             disabled: nextProps.disabled
         });
@@ -83,7 +89,9 @@ class MultipleChoice extends BaseComponent {
     _selectOption(selectedOption) {
 
         let selectedOptions = this.state.selectedOptions;
-        const index = selectedOptions.indexOf(selectedOption);
+        const index = typeof this.props.optionIndex === 'function' ?
+            this.props.optionIndex(selectedOptions, selectedOption) :
+            selectedOptions.indexOf(selectedOption);
 
         if (index === -1) {
             this._validateMaxSelectedOptions();
@@ -103,7 +111,7 @@ class MultipleChoice extends BaseComponent {
     }
 
     _renderIndicator(option) {
-        if (this._isSelected(option)) {
+        if ((typeof this.props.isSelected === 'function' && this.props.isSelected(this.state.selectedOptions, option)) || this._isSelected(option)) {
             if(typeof this.props.renderIndicator === 'function') {
                 return this.props.renderIndicator(option);
             }
