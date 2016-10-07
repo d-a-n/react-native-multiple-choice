@@ -30,6 +30,7 @@ Here is an overview of the component usage.
 
 * `style - {}` custom style of the list
 * `optionStyle - {}` custom style of the option element
+* `optionTextStyle - {}` custom style of the option text
 * `options - []` required array of options
 * `selectedOptions - []` optional array of initially selected options
 * `maxSelectedOptions - int` optional maximum number of selectable options
@@ -43,5 +44,3 @@ Here is an overview of the component usage.
 ## Screenshot
 
 ![example](https://raw.githubusercontent.com/d-a-n/react-native-multiple-choice/master/assets/images/screenshot.png)
-
-
