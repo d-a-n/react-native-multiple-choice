@@ -23,6 +23,7 @@ const propTypes = {
     renderText: React.PropTypes.func,
     style: View.propTypes.style,
     optionStyle: View.propTypes.style,
+    optionTextStyle: View.propTypes.style,
     disabled: PropTypes.bool
 };
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
     onSelection(option){},
     style:{},
     optionStyle:{},
+    optionTextStyle:{},
     disabled: false
 };
 
@@ -132,7 +134,7 @@ class MultipleChoice extends BaseComponent {
             return this.props.renderText(option);
         }
 
-        return (<Text>{option}</Text>);
+        return (<Text style={this.props.optionTextStyle}>{option}</Text>);
     }
 
     _renderRow(option) {
