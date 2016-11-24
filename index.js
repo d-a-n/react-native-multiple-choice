@@ -15,6 +15,7 @@ import Styles from './styles'
 const propTypes = {
     options: React.PropTypes.array.isRequired,
     selectedOptions: React.PropTypes.array,
+    selectedOptionsList:React.PropTypes.func,
     maxSelectedOptions: React.PropTypes.number,
     onSelection: React.PropTypes.func,
     renderIndicator: React.PropTypes.func,
@@ -29,6 +30,7 @@ const defaultProps = {
     options: [],
     selectedOptions: [],
     onSelection(option){},
+    selectedOptionsList(optionList){},
     style:{},
     optionStyle:{},
     disabled: false
@@ -94,8 +96,10 @@ class MultipleChoice extends BaseComponent {
 
         this._updateSelectedOptions(selectedOptions);
 
+
         //run callback
         this.props.onSelection(selectedOption);
+        this.props.selectedOptionsList(selectedOptions);
     }
 
     _isSelected(option) {
