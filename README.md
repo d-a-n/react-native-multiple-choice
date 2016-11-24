@@ -32,6 +32,7 @@ Here is an overview of the component usage.
 * `optionStyle - {}` custom style of the option element
 * `options - []` required array of options
 * `selectedOptions - []` optional array of initially selected options
+* `selectedOptionsList - function(optionList){}` optional callback , returns a list of selected options
 * `maxSelectedOptions - int` optional maximum number of selectable options
 * `onSelection - function(option){}` option selection callback
 * `renderIndicator - function(option)` should return a selected/deselected indicator node, default: check mark image
@@ -43,5 +44,3 @@ Here is an overview of the component usage.
 ## Screenshot
 
 ![example](https://raw.githubusercontent.com/d-a-n/react-native-multiple-choice/master/assets/images/screenshot.png)
-
-
