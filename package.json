@@ -11,6 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/d-a-n/react-native-multiple-choice.git"
   },
+  "dependencies": {
+    "prop-types": "~15.5.10",
+    "react-style-proptype": "~3.0.0"
+  },
   "keywords": [
     "multiple-choice",
     "single-choice",

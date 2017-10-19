@@ -1,6 +1,8 @@
 'use strict';
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
+import stylePropType from 'react-style-proptype';
 import {
   Text,
   TouchableOpacity,
@@ -13,16 +15,16 @@ import BaseComponent from './BaseComponent'
 import Styles from './styles'
 
 const propTypes = {
-    options: React.PropTypes.array.isRequired,
-    selectedOptions: React.PropTypes.array,
-    maxSelectedOptions: React.PropTypes.number,
-    onSelection: React.PropTypes.func,
-    renderIndicator: React.PropTypes.func,
-    renderSeparator: React.PropTypes.func,
-    renderRow: React.PropTypes.func,
-    renderText: React.PropTypes.func,
-    style: View.propTypes.style,
-    optionStyle: View.propTypes.style,
+    options: PropTypes.array.isRequired,
+    selectedOptions: PropTypes.array,
+    maxSelectedOptions: PropTypes.number,
+    onSelection: PropTypes.func,
+    renderIndicator: PropTypes.func,
+    renderSeparator: PropTypes.func,
+    renderRow: PropTypes.func,
+    renderText: PropTypes.func,
+    style: stylePropType,
+    optionStyle: stylePropType,
     disabled: PropTypes.bool
 };
 const defaultProps = {
